@@ -1,2 +1,7 @@
 input-numer
-dddssd
+==
+输入 数字
+
+用法
+----
+
