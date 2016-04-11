@@ -49,6 +49,12 @@ const InputNumber = React.createClass({
         }
         return val;
     },
+    handleUp(){
+        let val = this.state.value + 1;
+        this.setState({
+            value:val
+        });
+    },
     render(){
         const prefixCls = this.props.prefixCls;
         let value;
@@ -60,15 +66,22 @@ const InputNumber = React.createClass({
         return (
             <div>
                 <div className={this.props.prefixCls}>
+                    <div className={`${prefixCls}-handle-wrap`}>
+                        <a className={`${prefixCls}-handle-up`}
+                            ref="up"
+                            onClick={this.handleUp}></a>
+                        <a className={`${prefixCls}-handle-down`}></a>
+                    </div>
+
                     <div className={`${prefixCls}-input-wrap`}>
-                    <input
-                        className={`${prefixCls}-input`}
-                        {...this.props}
-                        value={value}
-                        onChange={this.onChange}
-                        onBlur={this.onBlur}
-                        onFocus={this.onFocus}
-                        />
+                        <input
+                            className={`${prefixCls}-input`}
+                            value={value}
+                            onChange={this.onChange}
+                            onBlur={this.onBlur}
+                            onFocus={this.onFocus}
+                            type="text"
+                            />
                     </div>
                 </div>
             </div>
