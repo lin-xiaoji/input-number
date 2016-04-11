@@ -1,0 +1,16 @@
+.input-number {
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  width: 100px;
+  height: 26px;
+  line-height: 26px;
+}
+.input-number:hover {
+  border-color: #23c0fa;
+}
+.input-number-input {
+  border: none;
+  width: 80px;
+  outline: 0;
+  text-align: center;
+}
