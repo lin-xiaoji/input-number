@@ -6,7 +6,9 @@ const InputNumber = React.createClass({
             prefixCls:"input-number",
             max:100,
             min:-10,
-            defaultValue:13
+            defaultValue:50,
+            step:2,
+            autoFocus:false
         }
     },
     getInitialState(){
@@ -15,6 +17,14 @@ const InputNumber = React.createClass({
             value:this.props.defaultValue,
             focused:false
         };
+    },
+    componentDidMount(){
+        if(this.props.autoFocus){
+            this.refs.input.focus();
+        }
+    },
+    componentDidUpdate(){
+
     },
     setInputValue(v){
         this.setState({
@@ -50,9 +60,15 @@ const InputNumber = React.createClass({
         return val;
     },
     handleUp(){
-        let val = this.state.value + 1;
+        let val = this.state.value + this.props.step;
         this.setState({
-            value:val
+            value:this.getValidValue(val)
+        });
+    },
+    handleDown(){
+        let val = this.state.value - this.props.step;
+        this.setState({
+            value:this.getValidValue(val)
         });
     },
     render(){
@@ -70,11 +86,13 @@ const InputNumber = React.createClass({
                         <a className={`${prefixCls}-handle-up`}
                             ref="up"
                             onClick={this.handleUp}></a>
-                        <a className={`${prefixCls}-handle-down`}></a>
+                        <a className={`${prefixCls}-handle-down`}
+                            onClick={this.handleDown}></a>
                     </div>
 
                     <div className={`${prefixCls}-input-wrap`}>
                         <input
+                            ref="input"
                             className={`${prefixCls}-input`}
                             value={value}
                             onChange={this.onChange}
